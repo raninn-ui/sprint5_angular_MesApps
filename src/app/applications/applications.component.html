@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <table class="table table-striped">
+                @if(applications.length!=0)
+                {
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Nombre de telechargement</th>
+                        <th>Release Date</th>
+                        <th>Editeur</th>                    </tr>
+                </thead>
+                }
+                @for (application of applications; track application.idApp;
+                 let index =$index; let nbr=$count)
+                {
+                <tbody>
+                    <tr>
+                        <td>{{index}}</td>
+                        <td>{{application.idApp}}</td>
+                        <td>{{application.nomApp}}</td>
+                        <td>{{application.nbtl}}</td>
+                        <td>{{application.releasedate | date:'yyyy-MM-dd'}}</td>
+                        <td>{{application.editeur.nomEdit}}</td>
+                        @if(authService.isAdmin()) {
+                        <td><a class="btn btn-danger" (click)="supprimerApplication(application)">Supprimer</a></td>
+                        <td><a class="btn btn-success" [routerLink]="['/updateApplication',application.idApp]">Modifier</a></td>
+                        }
+                    </tr>
+                </tbody>
+                }
+                @empty {
+                <h1>Aucun produit trouvé !</h1>
+                }
+            </table>
+        </div>
+    </div>
+</div>

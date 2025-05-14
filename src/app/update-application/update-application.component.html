@@ -1,0 +1,36 @@
+<div class="container">
+    <div>
+        <h2>Modifier un Produit :</h2>
+    </div>
+    <form>
+        <div hidden class="col-sm-2 col-md-2 col-lg-2">
+            <label>ID Application</label>
+            <input type="text" [(ngModel)]="currentApplication.idApp" name="idApp" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Nom Application</label>
+            <input type="text" [(ngModel)]="currentApplication.nomApp" name="nomApp" class="form-control">
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>Nombre de telechargement</label>
+            <input type="number" [(ngModel)]="currentApplication.nbtl" name="nbtl" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Release Date</label>
+            <input type="date" [ngModel]="currentApplication.releasedate | date: 'yyyy-MM-dd'"
+                (ngModelChange)=" currentApplication.releasedate= $event" name="releaseDate" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Editeur</label>
+            <select class="form-control form-control-lg" id="idCat" name="idCat" [(ngModel)]="updatedEditId">
+                @for(edit of editeurs; track edit.idEdit)
+                {
+                    <option [value]="edit.idEdit"> {{edit.nomEdit}} </option>
+                }
+            </select>
+        </div>
+        <div class="mt-2">
+            <button type="submit" (click)="updateApplication()" class="btn btn-success">Modifer</button>
+        </div>
+    </form>
+</div>

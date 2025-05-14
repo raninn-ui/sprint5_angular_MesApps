@@ -1,0 +1,61 @@
+<div class="container">
+    <form class="form-inline">
+        <div class="form-group mx-sm-3 mb-2 mt-2 ">
+        <label>Nom Application en tapant</label>
+        <input #nom [(ngModel)]="searchTerm" name="searchTerm" class="form-control" >
+        </div>
+        </form>
+        
+   
+    <!-- <form class="form-inline">
+        <div class="form-group mx-sm-3 mb-2 mt-2 ">
+            <label>Nom Application en tapant</label>
+            <input class="form-control" #searchTerm (keyup)="onKeyUp(searchTerm.value)">
+        </div>
+    </form> -->
+
+
+    <!-- <form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2 mt-2 ">
+    <label>Nom Application</label>
+    <input type="text" class="form-control" [(ngModel)]="nomApplication" name="nomApplication"
+    class="form-control">
+    <button type="submit" (click)="rechercherApps()" class="btn btn-primary mb-2 ml-2">Rechercher</button>
+    </div>
+    </form> -->
+
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <table class="table table-striped">
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Nombre de telechargement</th>
+                    <th>Release Date</th>
+                    <th>Editeur</th>
+                </tr>
+                @for (application of applications | searchFilter: searchTerm; track application.idApp)
+                {
+                <tbody>
+                    <tr>
+                        <td>{{application.idApp}}</td>
+                        <td>{{application.nomApp}}</td>
+                        <td>{{application.nbtl}}</td>
+                        <td>{{application.releasedate | date:'yyyy-MM-dd'}}</td>
+                        @if(application.editeur){
+                        <td>{{application.editeur.nomEdit}}</td>}
+                        @else {
+                        <td>PAS D'EDITEUR</td>
+                        }
+                        <!--
+            <td><a class="btn btn-danger"
+            (click)="supprimerProduit(produit)">Supprimer</a></td>
+            <td><a class="btn btn-success"
+            [routerLink]="['/updateProduit',produit.idProduit]">Modifier</a></td> -->
+                    </tr>
+                </tbody>
+                }
+            </table>
+        </div>
+    </div>
+</div>

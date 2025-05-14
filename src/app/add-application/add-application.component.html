@@ -1,0 +1,35 @@
+<div class="container">
+    <div>
+        <h2>Ajouter une Application :</h2>
+    </div>
+    <form>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>ID Application</label>
+            <input type="text" [(ngModel)]="newApplication.idApp" name="idProduit" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Nom Application</label>
+            <input type="text" [(ngModel)]="newApplication.nomApp" name="nomProduit" class="form-control">
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>Nombre telechargement</label>
+            <input type="number" [(ngModel)]="newApplication.nbtl" name="prixProduit" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Release date</label>
+            <input type="date" [(ngModel)]="newApplication.releasedate" name="dateCreation" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Editeur</label>
+            <select class="form-control form-control-lg" name="idEdit" id="idEdit" [(ngModel)]="newIdEdit">
+                <option *ngFor="let edit of editeurs" [value]="edit.idEdit">
+                    {{edit.nomEdit}}
+                </option>
+            </select>
+        </div>        
+        
+        <div class="mt-2">
+            <button type="submit" (click)="addApplication()" class="btn btn-success">Ajouter</button>
+        </div>
+    </form>
+</div>
