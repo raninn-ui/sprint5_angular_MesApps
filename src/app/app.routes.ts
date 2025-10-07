@@ -8,6 +8,8 @@ import { ListeEditeursComponent } from './liste-editeurs/liste-editeurs.componen
 import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { applicationGuard } from './application.guard';
+import { RegisterComponent } from './register/register.component';
+import { VerifEmailComponent } from './verif-email/verif-email.component';
 
 export const routes: Routes = [
     {path: "applications", component : ApplicationsComponent},
@@ -18,5 +20,7 @@ export const routes: Routes = [
     {path: "listeEditeurs", component: ListeEditeursComponent},
     {path: 'login', component: LoginComponent},
     {path: 'app-forbidden', component: ForbiddenComponent},
+    {path:'register',component:RegisterComponent},
+     { path: 'verifEmail', component: VerifEmailComponent }, 
     {path: "", redirectTo: "applications", pathMatch: "full"}
 ];

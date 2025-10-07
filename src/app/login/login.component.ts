@@ -2,18 +2,20 @@ import { Component } from '@angular/core';
 import { User } from '../model/user.model';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule,CommonModule],
+  standalone: true,
+  imports: [FormsModule,CommonModule,RouterLink],
   templateUrl: './login.component.html',
   styles: ``
 })
 export class LoginComponent {
   user = new User();
-  err:number = 0;
+  erreur=0;
+  message : string = "login ou mot de passe erronés.."; 
 
   constructor(private authService : AuthService,
     private router: Router) { }
@@ -26,7 +28,10 @@ export class LoginComponent {
           this.router.navigate(['/']);  
         },
         error: (err: any) => {
-          this.err = 1; 
+         this.erreur = 1; 
+         if (err.error.errorCause=='disabled')
+           this.message="Utilisateur désactivé, Veuillez contacter votre Administrateur";
+
         }
         });
 
